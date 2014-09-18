@@ -26,7 +26,10 @@ public class CodebaseWalkerTest
 			provider.addListener(listener);
 			provider.walk(args);
 
-			assertTrue(expected.equals(listener.filenames.toString()));
+			// Fix 1: in Windows machine, the slash need to be changed.
+			// Fix 2: TODO: the assertion will fail due to different orders of the file names.
+			
+			assertTrue(expected.equals(listener.filenames.toString().replace("\\", "/")));
 		}
 		catch (IOException e)
 		{
