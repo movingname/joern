@@ -28,11 +28,14 @@ public class testDDGCreator extends TestDBTestsBatchInserter
 	@Test
 	public void simplestTest()
 	{
+		// I guess the hits contain the definition of the function.
 		IndexHits<Long> hits = Function.getFunctionsByName("ddg_simplest_test");
 		long functionId = hits.next();
 		DDGCreator ddgCreator = new DDGCreator();
 		DDG ddg = ddgCreator.createForFunctionById(functionId);
 
+		// Don't know why they call it reachesLinks.
+		// Basically, it is just the edges in DDG
 		Set<DefUseRelation> reachesLinks = ddg.getDefUseEdges();
 
 		assertTrue(reachesLinks.size() == 1);
@@ -43,6 +46,9 @@ public class testDDGCreator extends TestDBTestsBatchInserter
 					.startsWith("int x = ")));
 			assertTrue((Elementary.getNodeCode((long) x.dst)
 					.startsWith("foo ( x )")));
+			
+			// It will print out x, the name of the variable.
+			// System.out.println(x.symbol);
 		}
 
 	}

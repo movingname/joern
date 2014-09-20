@@ -8,6 +8,7 @@ import java.util.Set;
 public class DDG
 {
 
+	// I guess they call edges in DDG defUseEdges
 	private Set<DefUseRelation> defUseEdges = new HashSet<DefUseRelation>();
 
 	public Set<DefUseRelation> getDefUseEdges()
